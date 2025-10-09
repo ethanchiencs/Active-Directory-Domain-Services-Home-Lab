@@ -6,14 +6,12 @@ Lab Type: Guided Microsoft Learning Lab (4 Exercises)
 Environment: Hyper-V on Windows 11
 Domain: tailwindtraders.internal
 Project Overview
-Completed Microsoft's official Active Directory Domain Services guided lab (AZ-1008) consisting of 4 comprehensive exercises. Deployed a production-ready multi-domain controller environment with organizational structure, user lifecycle management, password policies, security configurations, and administrative delegation following enterprise best practices.
-Lab Structure:
-
-Exercise 2: Configure Domain Controller Operations
-Exercise 3: Configure User Management Operations
-Exercise 4: Manage Password Policies
-Exercise 5: Configure Security Settings
-
+Completed Microsoft's official Active Directory Domain Services guided lab (AZ-1008) consisting of 4 comprehensive exercises. Deployed a production-ready multi-domain controller environment with organizational structure, user lifecycle management, password policies, security configurations, and administrative delegation following enterprise best practices.  
+Lab Structure:  
+Exercise 2: Configure Domain Controller Operations  
+Exercise 3: Configure User Management Operations  
+Exercise 4: Manage Password Policies  
+Exercise 5: Configure Security Settings  
 
 Lab Environment Setup
 Infrastructure Components
@@ -99,13 +97,10 @@ Steps Completed:
 Opened Active Directory Users and Computers on TAILWIND-DC1
 Right-clicked tailwindtraders.internal domain
 Selected New → Organizational Unit
-Created three OUs:
-
+Created three OUs:  
 Sydney
 Melbourne
 Brisbane
-
-
 
 Skills Demonstrated:
 
