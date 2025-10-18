@@ -66,7 +66,7 @@ Associated subnet with Sydney site
 Verified site and subnet configuration  
 <img width="960" height="1031" alt="Screenshot (10)" src="https://github.com/user-attachments/assets/b2c1ce78-2cdb-4096-a3de-50874626b727" />
 
-Lab 3: Configure User Management Operations  
+<b>Configure User Management Operations  </b>  
 Task 1: Create Organizational Units  
 Objective: Create three geographic OUs for organizational structure  
 Steps Completed:  
@@ -84,7 +84,6 @@ Steps Completed:
 
 Right-clicked Sydney OU → New → User  
 Created SydneyContractor:  
-
 Full name: SydneyContractor  
 User logon name: SydneyContractor  
 Password: Pa55w.rdPa55w.rd  
@@ -148,7 +147,6 @@ Clicked Find Now to search
 Verified SydneyContractor appeared in search results  
 <img width="963" height="873" alt="Screenshot (17)" src="https://github.com/user-attachments/assets/85aa2409-8ab8-4536-9d70-bb84bdd4b7bf" />
 
-
 Task 7: Disable User Account  
 Objective: Disable MelbourneContractor account  
 Steps Completed:  
@@ -168,8 +166,7 @@ Entered new password: Pa66w.rdPa66w.rd (twice)
 Confirmed password reset completion  
 <img width="963" height="875" alt="Screenshot (19)" src="https://github.com/user-attachments/assets/d94b1999-ec31-48a9-b0c3-e87265dbc9db" />
 
-
-Lab 4: Manage Password Policies  
+<b> Manage Password Policies  </b>  
 Task 1: Configure Domain Password Policy  
 Objective: Strengthen domain-wide password requirements  
 Steps Completed:  
@@ -207,12 +204,10 @@ Minimum password length: 16 characters
 
 
 In "Directly Applies To" section:  
-
 Clicked Add → Typed "Domain Admins"  
 Used Check Names to verify  
 Applied policy to Domain Admins group  
 <img width="963" height="873" alt="Screenshot (22)" src="https://github.com/user-attachments/assets/13e2e660-5773-4ed3-9aa7-9d6ebff253d0" />
-
 
 Policy Details:  
 
@@ -304,120 +299,80 @@ Implements principle of least privilege
 Separates service accounts from user accounts  
 
 Complete Skills Summary  
-Active Directory Administration  
-✓ Domain controller deployment and promotion
-✓ Multi-DC environment configuration
-✓ FSMO role management and transfer
-✓ Sites and Services configuration
-✓ Subnet management with CIDR notation
-✓ Organizational Unit structure design
-User and Identity Management
-✓ User account creation and lifecycle management
-✓ Account property configuration (expiration, attributes)
-✓ Password resets and forced password changes
-✓ Account enabling/disabling
-✓ Security group creation and management
-✓ Group membership administration
-✓ Protected Users configuration
-Security and Compliance
-✓ Group Policy Object creation and linking
-✓ Domain password policy configuration (14-character minimum)
-✓ Fine-Grained Password Policies (16-character for admins)
-✓ Legacy protocol restriction (NTLM blocking)
-✓ Advanced audit policy configuration
-✓ User Rights Assignment management
-✓ Active Directory Recycle Bin enablement
-Administrative Delegation
-✓ Delegation of Control Wizard
-✓ Role-based access control (RBAC)
-✓ Least-privilege principle implementation
-✓ OU-level permission delegation
-Tools and Interfaces
-✓ Active Directory Users and Computers (ADUC)
-✓ Active Directory Administrative Center (ADAC)
-✓ Group Policy Management Console (GPMC)
-✓ Active Directory Sites and Services
-✓ Server Manager
-✓ Hyper-V Manager
-✓ PowerShell (network configuration)
-Help Desk Operations (Tier 1/2)
-✓ Password resets
-✓ Account lockout resolution
-✓ User account searches and queries
-✓ Account status modifications
-✓ Group membership changes
-✓ Custom attribute management
+Active Directory Administration   
+✓ Domain controller deployment and promotion  
+✓ Multi-DC environment configuration  
+✓ FSMO role management and transfer  
+✓ Sites and Services configuration  
+✓ Subnet management with CIDR notation  
+✓ Organizational Unit structure design  
+User and Identity Management  
+✓ User account creation and lifecycle management  
+✓ Account property configuration (expiration, attributes)  
+✓ Password resets and forced password changes  
+✓ Account enabling/disabling  
+✓ Security group creation and management  
+✓ Group membership administration  
+✓ Protected Users configuration  
+Security and Compliance  
+✓ Group Policy Object creation and linking  
+✓ Domain password policy configuration (14-character minimum)  
+✓ Fine-Grained Password Policies (16-character for admins)  
+✓ Legacy protocol restriction (NTLM blocking)  
+✓ Advanced audit policy configuration  
+✓ User Rights Assignment management  
+✓ Active Directory Recycle Bin enablement  
+Administrative Delegation  
+✓ Delegation of Control Wizard  
+✓ Role-based access control (RBAC)  
+✓ Least-privilege principle implementation  
+✓ OU-level permission delegation  
+Tools and Interfaces  
+✓ Active Directory Users and Computers (ADUC)  
+✓ Active Directory Administrative Center (ADAC)  
+✓ Group Policy Management Console (GPMC)  
+✓ Active Directory Sites and Services  
+✓ Server Manager  
+✓ Hyper-V Manager  
+✓ PowerShell (network configuration)  
+Help Desk Operations (Tier 1/2)  
+✓ Password resets  
+✓ Account lockout resolution  
+✓ User account searches and queries  
+✓ Account status modifications  
+✓ Group membership changes  
+✓ Custom attribute management  
 
-Security Best Practices Implemented
-Password Security:
+Security Best Practices Implemented  
+Password Security:  
 
-14-character minimum for all domain users
-16-character minimum for Domain Admins (FGPP)
-Complexity requirements enabled
-Password history enforcement
+14-character minimum for all domain users  
+16-character minimum for Domain Admins (FGPP)  
+Complexity requirements enabled  
+Password history enforcement  
 
-Authentication Hardening:
+Authentication Hardening:  
 
-NTLM authentication blocked (Kerberos only)
-Protected Users group for sensitive accounts
-Service account logon restrictions
+NTLM authentication blocked (Kerberos only)  
+Protected Users group for sensitive accounts  
+Service account logon restrictions  
 
-Audit and Compliance:
+Audit and Compliance:  
 
-User account management auditing (success/failure)
-Security event logging for forensics
-Account activity tracking
+User account management auditing (success/failure)  
+Security event logging for forensics  
+Account activity tracking  
 
-Administrative Security:
+Administrative Security:  
 
-Delegated permissions (least privilege)
-Separated administrative duties
-Role-based access control
-Multiple domain controllers (redundancy)
+Delegated permissions (least privilege)  
+Separated administrative duties  
+Role-based access control  
+Multiple domain controllers (redundancy)  
 
-Disaster Recovery:
+Disaster Recovery:  
 
-Active Directory Recycle Bin enabled
-Multiple domain controllers for failover
-DSRM password configured
+Active Directory Recycle Bin enabled  
+Multiple domain controllers for failover  
+DSRM password configured  
 
-
-Training Source: Microsoft Learn
-Course: AZ-1008 - Administer Active Directory Domain Services
-Lab URLs:
-
-https://microsoftlearning.github.io/AZ-1008-Administer-Active-Directory-Domain-Services/
-
-
-Real-World Applications
-This lab simulates enterprise Active Directory environments and prepares for:
-Help Desk/Desktop Support Roles:
-
-Daily password reset operations
-Account lockout troubleshooting
-User account management
-Group membership modifications
-
-Systems Administrator Roles:
-
-Domain controller management
-Group Policy implementation
-Security baseline configuration
-Audit policy setup
-
-IT Security Roles:
-
-Password policy enforcement
-Authentication protocol hardening
-Audit logging configuration
-Access control implementation
-
-
-Project Takeaways
-Technical Competencies Gained:
-
-Comprehensive Active Directory administration
-Enterprise identity and access management
-Group Policy-based security configuration
-Multi-server environment management
-Security hardening and compliance
