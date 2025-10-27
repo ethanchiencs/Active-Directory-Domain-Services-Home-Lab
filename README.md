@@ -1,378 +1,420 @@
-# Active-Directory-Domain-Services-Home-Lab
-<hx> Active Directory Domain Services Home Lab  </hx>  
-Project Completion: September 2025  
-Training Source: Microsoft Learn - AZ-1008: Administer Active Directory Domain Services  
-Environment: Hyper-V on Windows 11  
-Domain: tailwindtraders.internal  
-Project Overview:  
-Completed Microsoft's official Active Directory Domain Services guided lab (AZ-1008) consisting of 4 comprehensive exercises. Deployed a production-ready multi-domain controller environment with organizational structure, user lifecycle management, password policies, security configurations, and administrative delegation following enterprise best practices.  
+# Active Directory Domain Services Home Lab
 
-Lab Structure:  
-Configure Domain Controller Operations  
-Configure User Management Operations  
-Manage Password Policies  
-Configure Security Settings  
+## Project Overview
 
-Primary Domain Controller: TAILWIND-DC1  
-Secondary Domain Controller: TAILWIND-MBR1 (promoted member server)  
-Domain Name: tailwindtraders.internal    
-Forest/Domain Functional Level: Windows Server 2022  
-Virtualization Platform: Hyper-V Manager  
-Network Configuration: NAT Network (10.10.10.0/24)  
-<img width="975" height="946" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/84314a37-1fb3-4a35-8ff3-7872bfef74d7" />
+**Completion Date:** September 2025  
+**Training Source:** Microsoft Learn - AZ-1008: Administer Active Directory Domain Services  
+**Environment:** Hyper-V on Windows 11  
+**Domain:** tailwindtraders.internal
 
-Administrative Credentials:
-Domain Admin: TAILWINDTRADERS\Administrator  
-Password: Pa55w.rdPa55w.rd  
-DSRM Password: Pa55w.rdPa55w.rd  
+This project implements a comprehensive Active Directory Domain Services environment based on Microsoft's official AZ-1008 guided lab. The lab consists of four core exercises covering domain controller operations, user management, password policies, and security configurations, all following enterprise best practices.
 
-<b> Configure Domain Controller Operations  </b>  
-Task 1: Install AD DS and Promote to Domain Controller  
-Objective: Promote member server TAILWIND-MBR1 to become additional domain controller  
-Steps Completed:  
+---
 
-Signed in to TAILWIND-MBR1 as TAILWINDTRADERS\Administrator  
-Opened Server Manager → Manage → Add Roles and Features  
-Selected Role-based or feature-based installation  
-Added Active Directory Domain Services role with all required features  
-Clicked notification icon in Server Manager to start promotion wizard  
-Selected "Add a domain controller to an existing domain"  
-Re-authenticated as Administrator with domain credentials  
-Configured Directory Services Restore Mode (DSRM) password  
-Completed prerequisites check and installed AD DS  
-Server automatically restarted and became operational domain controller  
-<img width="963" height="1010" alt="Screenshot (8)" src="https://github.com/user-attachments/assets/0c98aeaa-ccb4-499d-a171-852e872c1b86" />
+## Lab Environment
 
-Task 2: Transfer Flexible Single Master Operations (FSMO) Roles  
-Objective: Transfer RID Master role from TAILWIND-DC1 to TAILWIND-MBR1  
-Steps Completed:  
-Opened Active Directory Users and Computers on TAILWIND-MBR1  
-Right-clicked root node → All Tasks → Operations Masters  
-Navigated to RID tab  
-Clicked Change to transfer RID Master role  
-Confirmed transfer and verified successful completion    
-<img width="963" height="1036" alt="Screenshot (9)" src="https://github.com/user-attachments/assets/fafedf81-c907-49e9-a6f6-82f22541a7eb" />
+### Infrastructure Specifications
 
-Task 3: Create Active Directory Site and Configure Subnet  
-Objective: Create Sydney site with associated 172.16.1.0/24 subnet  
-Steps Completed:  
-Signed in to TAILWIND-DC1 as tailwindtraders\administrator  
-Opened Active Directory Sites and Services from Tools menu  
-Right-clicked Sites → New Site → Named "Sydney"  
-Selected DEFAULTIPSITELINK as link name  
-Expanded Sites folder → Right-clicked Subnets → New Subnet  
-Entered prefix: 172.16.1.0/24  
-Associated subnet with Sydney site  
-Verified site and subnet configuration  
-<img width="960" height="1031" alt="Screenshot (10)" src="https://github.com/user-attachments/assets/b2c1ce78-2cdb-4096-a3de-50874626b727" />
+| Component | Details |
+|-----------|---------|
+| **Primary Domain Controller** | TAILWIND-DC1 |
+| **Secondary Domain Controller** | TAILWIND-MBR1 (promoted member server) |
+| **Domain Name** | tailwindtraders.internal |
+| **Forest/Domain Functional Level** | Windows Server 2022 |
+| **Virtualization Platform** | Hyper-V Manager |
+| **Network Configuration** | NAT Network (10.10.10.0/24) |
 
-<b>Configure User Management Operations  </b>  
-Task 1: Create Organizational Units  
-Objective: Create three geographic OUs for organizational structure  
-Steps Completed:  
-Opened Active Directory Users and Computers on TAILWIND-DC1  
-Right-clicked tailwindtraders.internal domain  
-Selected New → Organizational Unit 
-Created three OUs:    
-Sydney  
-Melbourne  
-Brisbane  
+### Administrative Credentials
 
-Task 2: Create Users and Configure Account Properties  
-Objective: Create contractor user accounts with account expiration  
-Steps Completed:  
+- **Domain Admin:** `TAILWINDTRADERS\Administrator`
+- **Password:** `Pa55w.rdPa55w.rd`
+- **DSRM Password:** `Pa55w.rdPa55w.rd`
 
-Right-clicked Sydney OU → New → User  
-Created SydneyContractor:  
-Full name: SydneyContractor  
-User logon name: SydneyContractor  
-Password: Pa55w.rdPa55w.rd  
-<img width="963" height="872" alt="Screenshot (12)" src="https://github.com/user-attachments/assets/364de8fd-5f84-40e9-a101-86cffb859037" />
+---
 
+## Exercise 1: Configure Domain Controller Operations
 
-Opened SydneyContractor properties → Account tab  
-Set Account Expires to: End of January 1, 2030  
-<img width="963" height="870" alt="Screenshot (13)" src="https://github.com/user-attachments/assets/f5bf9c4d-bb97-49e4-a2de-6a4000ea4c52" />
+### Task 1: Install AD DS and Promote to Domain Controller
 
-Right-clicked SydneyContractor → Copy  
-Created MelbourneContractor (same password)  
-Created BrisbaneContractor (same password)  
-Moved MelbourneContractor to Melbourne OU (drag and drop)  
-Moved BrisbaneContractor to Brisbane OU (drag and drop)  
+**Objective:** Promote member server TAILWIND-MBR1 to become an additional domain controller
 
-Task 3: Create Security Group  
-Objective: Create Sydney Administrators group for delegation  
-Steps Completed:  
+**Steps Completed:**
 
-Right-clicked Sydney OU → New → Group  
-Named group: "Sydney Administrators"  
-Set Group scope: Universal  
-Opened SydneyContractor properties → Member Of tab  
-Added user to Sydney Administrators group  
-Verified group membership  
+1. Signed in to TAILWIND-MBR1 as `TAILWINDTRADERS\Administrator`
+2. Opened Server Manager → Manage → Add Roles and Features
+3. Selected role-based or feature-based installation
+4. Added Active Directory Domain Services role with all required features
+5. Initiated promotion wizard from Server Manager notification
+6. Selected "Add a domain controller to an existing domain"
+7. Re-authenticated with domain Administrator credentials
+8. Configured Directory Services Restore Mode (DSRM) password
+9. Completed prerequisites check and installed AD DS
+10. Server automatically restarted as operational domain controller
 
-Task 4: Configure Protected User  
-Objective: Add SydneyContractor to Protected Users security group  
-Steps Completed:  
+### Task 2: Transfer Flexible Single Master Operations (FSMO) Roles
 
-Opened SydneyContractor properties → Member Of tab  
-Clicked Add → Typed "Protected Users"  
-Clicked Check Names to verify group  
-Added user to Protected Users group for enhanced security  
-<img width="963" height="874" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/2610f46a-97ee-461c-bff4-c20bb39dc2c1" />
+**Objective:** Transfer RID Master role from TAILWIND-DC1 to TAILWIND-MBR1
 
-Task 5: Delegate Security Permissions  
-Objective: Delegate password reset permissions to Sydney Administrators  
-Steps Completed:  
+**Steps Completed:**
 
-Right-clicked Sydney OU → Delegate Control  
-Clicked Add → Entered "Sydney Administrators"  
-Used Check Names to verify security group 
-Selected task: "Reset user passwords and force password change at next logon"  
-Completed delegation wizard  
-<img width="960" height="874" alt="Screenshot (16)" src="https://github.com/user-attachments/assets/347e4d4c-4c93-4a6f-b9da-717da4281000" />
+1. Opened Active Directory Users and Computers on TAILWIND-MBR1
+2. Right-clicked root node → All Tasks → Operations Masters
+3. Navigated to RID tab
+4. Clicked Change to transfer RID Master role
+5. Confirmed transfer and verified successful completion
 
-Task 6: Configure City Attribute and Search  
-Objective: Set custom attribute and use Find feature  
-Steps Completed:  
+**Result:** RID Master role successfully transferred to TAILWIND-MBR1
 
-Opened SydneyContractor properties → Address tab  
-Set City field to: "Sydney"  
-Right-clicked tailwindtraders.internal → Find  
-Navigated to Advanced tab  
-Selected Field → User → City  
-Set Condition: "Is (exactly)"  
-Set Value: "Sydney"  
-Clicked Find Now to search  
-Verified SydneyContractor appeared in search results  
-<img width="963" height="873" alt="Screenshot (17)" src="https://github.com/user-attachments/assets/85aa2409-8ab8-4536-9d70-bb84bdd4b7bf" />
+### Task 3: Create Active Directory Site and Configure Subnet
 
-Task 7: Disable User Account  
-Objective: Disable MelbourneContractor account  
-Steps Completed:  
+**Objective:** Create Sydney site with associated 172.16.1.0/24 subnet
 
-Navigated to Melbourne OU  
-Right-clicked MelbourneContractor → Disable Account  
-Verified account disabled status (account icon showed down arrow)  
-<img width="960" height="873" alt="Screenshot (18)" src="https://github.com/user-attachments/assets/ef05ec0f-cd36-4914-8f3b-c0d41a319ac9" />
+**Steps Completed:**
 
-Task 8: Reset User Password  
-Objective: Reset BrisbaneContractor password  
-Steps Completed:  
+1. Signed in to TAILWIND-DC1 as `tailwindtraders\administrator`
+2. Opened Active Directory Sites and Services from Tools menu
+3. Right-clicked Sites → New Site → Named "Sydney"
+4. Selected DEFAULTIPSITELINK as link name
+5. Expanded Sites → Right-clicked Subnets → New Subnet
+6. Entered prefix: `172.16.1.0/24`
+7. Associated subnet with Sydney site
+8. Verified site and subnet configuration
 
-Navigated to Brisbane OU  
-Right-clicked BrisbaneContractor → Reset Password  
-Entered new password: Pa66w.rdPa66w.rd (twice)  
-Confirmed password reset completion  
-<img width="963" height="875" alt="Screenshot (19)" src="https://github.com/user-attachments/assets/d94b1999-ec31-48a9-b0c3-e87265dbc9db" />
+---
 
-<b> Manage Password Policies  </b>  
-Task 1: Configure Domain Password Policy  
-Objective: Strengthen domain-wide password requirements  
-Steps Completed:  
+## Exercise 2: Configure User Management Operations
 
-Opened Group Policy Management Console from Server Manager  
-Expanded tailwindtraders.internal forest → Domains → tailwindtraders.internal  
-Right-clicked Default Domain Policy → Edit  
-Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Account Policies\Password Policy  
-Double-clicked "Minimum password length" policy  
-Changed minimum characters from default to 14 characters  
-Applied and closed Group Policy Management Editor  
-<img width="963" height="874" alt="Screenshot (20)" src="https://github.com/user-attachments/assets/0d37f03d-ace1-4195-aa10-7ec5ed6d1e5c" />
+### Task 1: Create Organizational Units
 
-Policy Configuration:  
+**Objective:** Create geographic OUs for organizational structure
 
-Minimum password length: 14 characters  
-Applies to: All domain users  
-Enforcement: Domain-wide via Default Domain Policy  
+**OUs Created:**
+- Sydney
+- Melbourne
+- Brisbane
 
-Task 2: Configure Fine-Grained Password Policy  
-Objective: Create stricter password policy for Domain Admins  
-Steps Completed:  
+**Steps Completed:**
 
-Opened Active Directory Administrative Center from Tools menu  
-Clicked tailwindtraders (local) under Overview  
-Opened System container  
-Opened Password Settings Container  
-Right-clicked → New → Password Settings  
-Configured policy:  
+1. Opened Active Directory Users and Computers on TAILWIND-DC1
+2. Right-clicked tailwindtraders.internal domain
+3. Selected New → Organizational Unit
+4. Created three OUs for geographic organization
 
-Name: "Domain Admin Password Policy"  
-Precedence: 1 (highest priority)  
-Minimum password length: 16 characters  
-<img width="966" height="877" alt="Screenshot (21)" src="https://github.com/user-attachments/assets/dae660c8-48c2-4f42-9078-465fb3d4978c" />
+### Task 2: Create Users and Configure Account Properties
 
+**Objective:** Create contractor user accounts with account expiration settings
 
-In "Directly Applies To" section:  
-Clicked Add → Typed "Domain Admins"  
-Used Check Names to verify  
-Applied policy to Domain Admins group  
-<img width="963" height="873" alt="Screenshot (22)" src="https://github.com/user-attachments/assets/13e2e660-5773-4ed3-9aa7-9d6ebff253d0" />
+**Steps Completed:**
 
-Policy Details:  
+1. Right-clicked Sydney OU → New → User
+2. Created `SydneyContractor`:
+   - Full name: SydneyContractor
+   - User logon name: SydneyContractor
+   - Password: `Pa55w.rdPa55w.rd`
+3. Opened SydneyContractor properties → Account tab
+4. Set Account Expires to: End of January 1, 2030
+5. Right-clicked SydneyContractor → Copy
+6. Created `MelbourneContractor` (same password)
+7. Created `BrisbaneContractor` (same password)
+8. Moved MelbourneContractor to Melbourne OU (drag and drop)
+9. Moved BrisbaneContractor to Brisbane OU (drag and drop)
 
-Fine-Grained Password Policy (FGPP) for privileged accounts  
-16-character minimum (stricter than domain default)  
-Precedence 1 ensures it overrides default policy  
-Targets: Domain Admins security group  
+### Task 3: Create Security Group
 
-Task 3: Enable Active Directory Recycle Bin  
-Objective: Enable AD Recycle Bin for object recovery  
-Steps Completed:  
- 
-Opened Active Directory Administrative Center  
-Selected tailwindtraders (local) in left pane  
-Clicked "Enable Recycle Bin" in right pane  
-Acknowledged warning about irreversible change  
-Acknowledged replication latency warning  
-Verified Recycle Bin enabled status  
-<img width="957" height="874" alt="Screenshot (23)" src="https://github.com/user-attachments/assets/d056cb6d-d3b8-4f01-b374-d8c166c34345" />
+**Objective:** Create Sydney Administrators group for delegation
 
-Lab 5: Configure Security Settings  
-Task 1: Restrict NTLM Authentication  
-Objective: Disable legacy NTLM authentication for domain accounts  
-Steps Completed:  
+**Steps Completed:**
 
-Opened Group Policy Management Console  
-Expanded tailwindtraders.internal → Group Policy Objects  
-Right-clicked Default Domain Controller Policy → Edit  
-Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\Security Options  
-Double-clicked "Network security: Restrict NTLM: NTLM authentication in this domain"  
-Checked "Define this policy setting"  
-Selected value: Deny all  
-Confirmed setting change  
-Applied policy  
-<img width="957" height="1031" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/5819c20c-c63b-4e1b-a503-c3dbf3cbe447" />
+1. Right-clicked Sydney OU → New → Group
+2. Named group: "Sydney Administrators"
+3. Set Group scope: Universal
+4. Opened SydneyContractor properties → Member Of tab
+5. Added user to Sydney Administrators group
+6. Verified group membership
 
-Security Impact:  
+### Task 4: Configure Protected User
 
-Blocks NTLM authentication domain-wide  
-Forces use of Kerberos (more secure protocol)  
-Prevents pass-the-hash attacks  
-Hardens authentication mechanisms  
+**Objective:** Add SydneyContractor to Protected Users security group for enhanced security
 
-Task 2: Audit User Account Management in Sydney OU  
-Objective: Enable detailed auditing of account management activities  
-Steps Completed:  
+**Steps Completed:**
 
-Opened Group Policy Management Console  
-Navigated to Sydney OU  
-Right-clicked → Create a GPO in this domain, and link it here  
-Named GPO: "SydneyOUPolicy"  
-<img width="963" height="1029" alt="Screenshot (25)" src="https://github.com/user-attachments/assets/97f1887d-ea23-4a7b-95a7-c02a7937fc3d" />
+1. Opened SydneyContractor properties → Member Of tab
+2. Clicked Add → Typed "Protected Users"
+3. Clicked Check Names to verify group
+4. Added user to Protected Users group
 
-Right-clicked SydneyOUPolicy → Edit  
-Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Advanced Audit Policy Configuration\Audit Policies\Account Management  
-Double-clicked "Audit User account management"  
-Checked "Configure the following audit events"  
-Selected both Success and Failure events  
-Applied policy  
-<img width="960" height="1028" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/887460df-c884-4a00-935f-0184642301e4" />
+**Security Impact:** Enhanced protection against credential theft attacks
 
-Auditing Configuration:  
+### Task 5: Delegate Security Permissions
 
-Tracks all user account changes in Sydney OU  
-Logs both successful and failed operations  
-Captures: account creation, deletion, modification, password resets  
-Enables compliance and security monitoring  
+**Objective:** Delegate password reset permissions to Sydney Administrators
 
-Task 3: Deny Log On As a Service  
-Objective: Restrict service account logon for Sydney Administrators  
-Steps Completed:  
+**Steps Completed:**
 
-Opened Group Policy Management Console  
-Navigated to Sydney OU → SydneyOUPolicy  
-Right-clicked → Edit  
-Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\User Rights Assignment  
-Double-clicked "Deny Log on as a service"  
-Checked "Define this policy setting"  
-Clicked Add User or Group → Browse → Advanced → Find Now  
-Selected "Sydney Administrators" group  
-Clicked OK through all dialog boxes to apply  
-<img width="957" height="1033" alt="Screenshot (27)" src="https://github.com/user-attachments/assets/cdb1c6f2-b64a-4434-a8c7-dbd71f577dbe" />
+1. Right-clicked Sydney OU → Delegate Control
+2. Clicked Add → Entered "Sydney Administrators"
+3. Used Check Names to verify security group
+4. Selected task: "Reset user passwords and force password change at next logon"
+5. Completed delegation wizard
 
-Security Purpose:  
+**Result:** Sydney Administrators can now reset passwords within their OU
 
-Prevents Sydney Administrators from running as service accounts  
-Reduces attack surface for delegated admin accounts  
-Implements principle of least privilege  
-Separates service accounts from user accounts  
+### Task 6: Configure City Attribute and Search
 
-Complete Skills Summary  
-Active Directory Administration   
-✓ Domain controller deployment and promotion  
-✓ Multi-DC environment configuration  
-✓ FSMO role management and transfer  
-✓ Sites and Services configuration  
-✓ Subnet management with CIDR notation  
-✓ Organizational Unit structure design  
-User and Identity Management  
-✓ User account creation and lifecycle management  
-✓ Account property configuration (expiration, attributes)  
-✓ Password resets and forced password changes  
-✓ Account enabling/disabling  
-✓ Security group creation and management  
-✓ Group membership administration  
-✓ Protected Users configuration  
-Security and Compliance  
-✓ Group Policy Object creation and linking  
-✓ Domain password policy configuration (14-character minimum)  
-✓ Fine-Grained Password Policies (16-character for admins)  
-✓ Legacy protocol restriction (NTLM blocking)  
-✓ Advanced audit policy configuration  
-✓ User Rights Assignment management  
-✓ Active Directory Recycle Bin enablement  
-Administrative Delegation  
-✓ Delegation of Control Wizard  
-✓ Role-based access control (RBAC)  
-✓ Least-privilege principle implementation  
-✓ OU-level permission delegation  
-Tools and Interfaces  
-✓ Active Directory Users and Computers (ADUC)  
-✓ Active Directory Administrative Center (ADAC)  
-✓ Group Policy Management Console (GPMC)  
-✓ Active Directory Sites and Services  
-✓ Server Manager  
-✓ Hyper-V Manager  
-✓ PowerShell (network configuration)  
-Help Desk Operations (Tier 1/2)  
-✓ Password resets  
-✓ Account lockout resolution  
-✓ User account searches and queries  
-✓ Account status modifications  
-✓ Group membership changes  
-✓ Custom attribute management  
+**Objective:** Set custom attribute and demonstrate Find functionality
 
-Security Best Practices Implemented  
-Password Security:  
+**Steps Completed:**
 
-14-character minimum for all domain users  
-16-character minimum for Domain Admins (FGPP)  
-Complexity requirements enabled  
-Password history enforcement  
+1. Opened SydneyContractor properties → Address tab
+2. Set City field to: "Sydney"
+3. Right-clicked tailwindtraders.internal → Find
+4. Navigated to Advanced tab
+5. Selected Field → User → City
+6. Set Condition: "Is (exactly)"
+7. Set Value: "Sydney"
+8. Clicked Find Now to search
+9. Verified SydneyContractor appeared in search results
 
-Authentication Hardening:  
+### Task 7: Disable User Account
 
-NTLM authentication blocked (Kerberos only)  
-Protected Users group for sensitive accounts  
-Service account logon restrictions  
+**Objective:** Disable MelbourneContractor account
 
-Audit and Compliance:  
+**Steps Completed:**
 
-User account management auditing (success/failure)  
-Security event logging for forensics  
-Account activity tracking  
+1. Navigated to Melbourne OU
+2. Right-clicked MelbourneContractor → Disable Account
+3. Verified account disabled status (down arrow icon)
 
-Administrative Security:  
+### Task 8: Reset User Password
 
-Delegated permissions (least privilege)  
-Separated administrative duties  
-Role-based access control  
-Multiple domain controllers (redundancy)  
+**Objective:** Reset BrisbaneContractor password
 
-Disaster Recovery:  
+**Steps Completed:**
 
-Active Directory Recycle Bin enabled  
-Multiple domain controllers for failover  
-DSRM password configured  
+1. Navigated to Brisbane OU
+2. Right-clicked BrisbaneContractor → Reset Password
+3. Entered new password: `Pa66w.rdPa66w.rd` (confirmed twice)
+4. Verified password reset completion
 
+---
+
+## Exercise 3: Manage Password Policies
+
+### Task 1: Configure Domain Password Policy
+
+**Objective:** Strengthen domain-wide password requirements
+
+**Steps Completed:**
+
+1. Opened Group Policy Management Console from Server Manager
+2. Expanded tailwindtraders.internal forest → Domains → tailwindtraders.internal
+3. Right-clicked Default Domain Policy → Edit
+4. Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Account Policies\Password Policy
+5. Double-clicked "Minimum password length" policy
+6. Changed minimum characters to **14 characters**
+7. Applied and closed Group Policy Management Editor
+
+**Policy Configuration:**
+- **Minimum password length:** 14 characters
+- **Applies to:** All domain users
+- **Enforcement:** Domain-wide via Default Domain Policy
+
+### Task 2: Configure Fine-Grained Password Policy
+
+**Objective:** Create stricter password policy for Domain Admins
+
+**Steps Completed:**
+
+1. Opened Active Directory Administrative Center from Tools menu
+2. Clicked tailwindtraders (local) under Overview
+3. Opened System container → Password Settings Container
+4. Right-clicked → New → Password Settings
+5. Configured policy:
+   - **Name:** "Domain Admin Password Policy"
+   - **Precedence:** 1 (highest priority)
+   - **Minimum password length:** 16 characters
+6. In "Directly Applies To" section:
+   - Clicked Add → Typed "Domain Admins"
+   - Used Check Names to verify
+   - Applied policy to Domain Admins group
+
+**Policy Details:**
+- Fine-Grained Password Policy (FGPP) for privileged accounts
+- 16-character minimum (stricter than domain default)
+- Precedence 1 ensures it overrides default policy
+- **Targets:** Domain Admins security group
+
+### Task 3: Enable Active Directory Recycle Bin
+
+**Objective:** Enable AD Recycle Bin for object recovery
+
+**Steps Completed:**
+
+1. Opened Active Directory Administrative Center
+2. Selected tailwindtraders (local) in left pane
+3. Clicked "Enable Recycle Bin" in right pane
+4. Acknowledged warning about irreversible change
+5. Acknowledged replication latency warning
+6. Verified Recycle Bin enabled status
+
+**Impact:** Enables recovery of accidentally deleted AD objects without authoritative restore
+
+---
+
+## Exercise 4: Configure Security Settings
+
+### Task 1: Restrict NTLM Authentication
+
+**Objective:** Disable legacy NTLM authentication for domain accounts
+
+**Steps Completed:**
+
+1. Opened Group Policy Management Console
+2. Expanded tailwindtraders.internal → Group Policy Objects
+3. Right-clicked Default Domain Controller Policy → Edit
+4. Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\Security Options
+5. Double-clicked "Network security: Restrict NTLM: NTLM authentication in this domain"
+6. Checked "Define this policy setting"
+7. Selected value: **Deny all**
+8. Applied policy
+
+**Security Impact:**
+- Blocks NTLM authentication domain-wide
+- Forces use of Kerberos (more secure protocol)
+- Prevents pass-the-hash attacks
+- Hardens authentication mechanisms
+
+### Task 2: Audit User Account Management in Sydney OU
+
+**Objective:** Enable detailed auditing of account management activities
+
+**Steps Completed:**
+
+1. Opened Group Policy Management Console
+2. Navigated to Sydney OU
+3. Right-clicked → Create a GPO in this domain, and link it here
+4. Named GPO: "SydneyOUPolicy"
+5. Right-clicked SydneyOUPolicy → Edit
+6. Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Advanced Audit Policy Configuration\Audit Policies\Account Management
+7. Double-clicked "Audit User account management"
+8. Checked "Configure the following audit events"
+9. Selected both **Success** and **Failure** events
+10. Applied policy
+
+**Auditing Configuration:**
+- Tracks all user account changes in Sydney OU
+- Logs both successful and failed operations
+- Captures: account creation, deletion, modification, password resets
+- Enables compliance and security monitoring
+
+### Task 3: Deny Log On As a Service
+
+**Objective:** Restrict service account logon for Sydney Administrators
+
+**Steps Completed:**
+
+1. Opened Group Policy Management Console
+2. Navigated to Sydney OU → SydneyOUPolicy
+3. Right-clicked → Edit
+4. Navigated to: Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\User Rights Assignment
+5. Double-clicked "Deny Log on as a service"
+6. Checked "Define this policy setting"
+7. Clicked Add User or Group → Browse → Advanced → Find Now
+8. Selected "Sydney Administrators" group
+9. Applied configuration
+
+**Security Purpose:**
+- Prevents Sydney Administrators from running as service accounts
+- Reduces attack surface for delegated admin accounts
+- Implements principle of least privilege
+- Separates service accounts from user accounts
+
+---
+
+## Skills Demonstrated
+
+### Active Directory Administration
+- Domain controller deployment and promotion
+- Multi-DC environment configuration
+- FSMO role management and transfer
+- Sites and Services configuration
+- Subnet management with CIDR notation
+- Organizational Unit structure design
+
+### User and Identity Management
+- User account creation and lifecycle management
+- Account property configuration (expiration, attributes)
+- Password resets and forced password changes
+- Account enabling/disabling
+- Security group creation and management
+- Group membership administration
+- Protected Users configuration
+
+### Security and Compliance
+- Group Policy Object creation and linking
+- Domain password policy configuration (14-character minimum)
+- Fine-Grained Password Policies (16-character for admins)
+- Legacy protocol restriction (NTLM blocking)
+- Advanced audit policy configuration
+- User Rights Assignment management
+- Active Directory Recycle Bin enablement
+
+### Administrative Delegation
+- Delegation of Control Wizard
+- Role-based access control (RBAC)
+- Least-privilege principle implementation
+- OU-level permission delegation
+
+### Tools and Interfaces
+- Active Directory Users and Computers (ADUC)
+- Active Directory Administrative Center (ADAC)
+- Group Policy Management Console (GPMC)
+- Active Directory Sites and Services
+- Server Manager
+- Hyper-V Manager
+- PowerShell (network configuration)
+
+### Help Desk Operations
+- Password resets
+- Account lockout resolution
+- User account searches and queries
+- Account status modifications
+- Group membership changes
+- Custom attribute management
+
+---
+
+## Security Best Practices Implemented
+
+### Password Security
+- 14-character minimum for all domain users
+- 16-character minimum for Domain Admins (FGPP)
+- Complexity requirements enabled
+- Password history enforcement
+
+### Authentication Hardening
+- NTLM authentication blocked (Kerberos only)
+- Protected Users group for sensitive accounts
+- Service account logon restrictions
+
+### Audit and Compliance
+- User account management auditing (success/failure)
+- Security event logging for forensics
+- Account activity tracking
+
+### Administrative Security
+- Delegated permissions (least privilege)
+- Separated administrative duties
+- Role-based access control
+- Multiple domain controllers (redundancy)
+
+### Disaster Recovery
+- Active Directory Recycle Bin enabled
+- Multiple domain controllers for failover
+- DSRM password configured
+
+---
+
+## Conclusion
+
+This Active Directory Domain Services home lab successfully demonstrates enterprise-level identity and access management capabilities. The implementation follows Microsoft's official training curriculum and incorporates industry best practices for security, compliance, and administrative delegation. The multi-domain controller environment provides hands-on experience with real-world AD operations that are directly applicable to IT support, systems administration, and cybersecurity roles.
