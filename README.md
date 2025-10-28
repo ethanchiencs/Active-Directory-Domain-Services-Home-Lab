@@ -23,6 +23,8 @@ This project implements a comprehensive Active Directory Domain Services environ
 | **Forest/Domain Functional Level** | Windows Server 2022 |
 | **Virtualization Platform** | Hyper-V Manager |
 | **Network Configuration** | NAT Network (10.10.10.0/24) |
+<img width="969" height="719" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/2eea5ebe-320c-49be-94c4-7ea38f8e19a2" />
+<img width="975" height="946" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/03c46ee3-f605-43d3-8267-c786112d843c" />
 
 ### Administrative Credentials
 
@@ -50,6 +52,8 @@ This project implements a comprehensive Active Directory Domain Services environ
 8. Configured Directory Services Restore Mode (DSRM) password
 9. Completed prerequisites check and installed AD DS
 10. Server automatically restarted as operational domain controller
+<img width="966" height="877" alt="Screenshot (7)" src="https://github.com/user-attachments/assets/a8a7c698-9b34-48b2-b496-aaaca1fd3294" />
+<img width="963" height="1010" alt="Screenshot (8)" src="https://github.com/user-attachments/assets/1252565e-0ddd-403f-a8d9-1e4f7b1bd2e8" />
 
 ### Task 2: Transfer Flexible Single Master Operations (FSMO) Roles
 
@@ -64,6 +68,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 5. Confirmed transfer and verified successful completion
 
 **Result:** RID Master role successfully transferred to TAILWIND-MBR1
+<img width="963" height="1036" alt="Screenshot (9)" src="https://github.com/user-attachments/assets/460a8a8f-e411-4762-aeaa-88c0b4e73d67" />
 
 ### Task 3: Create Active Directory Site and Configure Subnet
 
@@ -79,6 +84,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 6. Entered prefix: `172.16.1.0/24`
 7. Associated subnet with Sydney site
 8. Verified site and subnet configuration
+<img width="960" height="1031" alt="Screenshot (10)" src="https://github.com/user-attachments/assets/f5c6406e-6a70-4069-9721-8e9408829604" />
 
 ---
 
@@ -99,6 +105,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 2. Right-clicked tailwindtraders.internal domain
 3. Selected New → Organizational Unit
 4. Created three OUs for geographic organization
+<img width="963" height="873" alt="Screenshot (11)" src="https://github.com/user-attachments/assets/5d65de73-8008-49d7-85a6-0e8f6c0c36cc" />
 
 ### Task 2: Create Users and Configure Account Properties
 
@@ -112,12 +119,14 @@ This project implements a comprehensive Active Directory Domain Services environ
    - User logon name: SydneyContractor
    - Password: `Pa55w.rdPa55w.rd`
 3. Opened SydneyContractor properties → Account tab
-4. Set Account Expires to: End of January 1, 2030
+4. Set Account Expires to: End of June 1, 2030
 5. Right-clicked SydneyContractor → Copy
 6. Created `MelbourneContractor` (same password)
 7. Created `BrisbaneContractor` (same password)
 8. Moved MelbourneContractor to Melbourne OU (drag and drop)
 9. Moved BrisbaneContractor to Brisbane OU (drag and drop)
+<img width="963" height="872" alt="Screenshot (12)" src="https://github.com/user-attachments/assets/77819c54-a359-46d8-998e-7f099c710670" />
+<img width="963" height="870" alt="Screenshot (13)" src="https://github.com/user-attachments/assets/2252638a-b86b-41f1-b6fa-ced02b7cd430" />
 
 ### Task 3: Create Security Group
 
@@ -131,6 +140,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 4. Opened SydneyContractor properties → Member Of tab
 5. Added user to Sydney Administrators group
 6. Verified group membership
+<img width="966" height="870" alt="Screenshot (14)" src="https://github.com/user-attachments/assets/6090def2-1146-4d47-98a6-c74ccf0789d9" />
 
 ### Task 4: Configure Protected User
 
@@ -142,6 +152,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 2. Clicked Add → Typed "Protected Users"
 3. Clicked Check Names to verify group
 4. Added user to Protected Users group
+<img width="963" height="874" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/731b37af-e9d3-419f-8a83-b844eb5137fe" />
 
 **Security Impact:** Enhanced protection against credential theft attacks
 
@@ -156,6 +167,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 3. Used Check Names to verify security group
 4. Selected task: "Reset user passwords and force password change at next logon"
 5. Completed delegation wizard
+<img width="960" height="874" alt="Screenshot (16)" src="https://github.com/user-attachments/assets/354b00a4-78e9-4ec3-a3fe-7b12881dc3a3" />
 
 **Result:** Sydney Administrators can now reset passwords within their OU
 
@@ -174,6 +186,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 7. Set Value: "Sydney"
 8. Clicked Find Now to search
 9. Verified SydneyContractor appeared in search results
+<img width="963" height="873" alt="Screenshot (17)" src="https://github.com/user-attachments/assets/8706ce43-a02d-40b6-ad00-7bba798d25b9" />
 
 ### Task 7: Disable User Account
 
@@ -184,6 +197,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 1. Navigated to Melbourne OU
 2. Right-clicked MelbourneContractor → Disable Account
 3. Verified account disabled status (down arrow icon)
+<img width="960" height="873" alt="Screenshot (18)" src="https://github.com/user-attachments/assets/f923686b-a25d-4fcb-aa04-00df97e68f10" />
 
 ### Task 8: Reset User Password
 
@@ -195,6 +209,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 2. Right-clicked BrisbaneContractor → Reset Password
 3. Entered new password: `Pa66w.rdPa66w.rd` (confirmed twice)
 4. Verified password reset completion
+<img width="963" height="875" alt="Screenshot (19)" src="https://github.com/user-attachments/assets/6458f877-e8c9-4ed2-97c9-091a252268d0" />
 
 ---
 
@@ -213,6 +228,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 5. Double-clicked "Minimum password length" policy
 6. Changed minimum characters to **14 characters**
 7. Applied and closed Group Policy Management Editor
+<img width="963" height="874" alt="Screenshot (20)" src="https://github.com/user-attachments/assets/3680f033-0839-45fa-9e90-d3e6ac36cd52" />
 
 **Policy Configuration:**
 - **Minimum password length:** 14 characters
@@ -237,6 +253,8 @@ This project implements a comprehensive Active Directory Domain Services environ
    - Clicked Add → Typed "Domain Admins"
    - Used Check Names to verify
    - Applied policy to Domain Admins group
+<img width="966" height="877" alt="Screenshot (21)" src="https://github.com/user-attachments/assets/4ed83db1-5936-41ce-b9a6-2ac3d2ef00ab" />
+<img width="963" height="873" alt="Screenshot (22)" src="https://github.com/user-attachments/assets/12ffa3ac-f5db-4cd6-a4d6-d2011f6e4165" />
 
 **Policy Details:**
 - Fine-Grained Password Policy (FGPP) for privileged accounts
@@ -256,6 +274,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 4. Acknowledged warning about irreversible change
 5. Acknowledged replication latency warning
 6. Verified Recycle Bin enabled status
+<img width="957" height="874" alt="Screenshot (23)" src="https://github.com/user-attachments/assets/768a9870-7cb6-4ec4-bb3d-b68d240ca6fe" />
 
 **Impact:** Enables recovery of accidentally deleted AD objects without authoritative restore
 
@@ -277,6 +296,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 6. Checked "Define this policy setting"
 7. Selected value: **Deny all**
 8. Applied policy
+<img width="957" height="1031" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/7d170bd2-de35-4af3-b65f-b6275dc31c80" />
 
 **Security Impact:**
 - Blocks NTLM authentication domain-wide
@@ -300,6 +320,8 @@ This project implements a comprehensive Active Directory Domain Services environ
 8. Checked "Configure the following audit events"
 9. Selected both **Success** and **Failure** events
 10. Applied policy
+<img width="963" height="1029" alt="Screenshot (25)" src="https://github.com/user-attachments/assets/7a1cfe99-db5e-4508-b7e1-7442cba140da" />
+<img width="960" height="1028" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/82d805d3-afcc-4d08-bd7c-63b11004da12" />
 
 **Auditing Configuration:**
 - Tracks all user account changes in Sydney OU
@@ -322,6 +344,7 @@ This project implements a comprehensive Active Directory Domain Services environ
 7. Clicked Add User or Group → Browse → Advanced → Find Now
 8. Selected "Sydney Administrators" group
 9. Applied configuration
+<img width="957" height="1033" alt="Screenshot (27)" src="https://github.com/user-attachments/assets/de9f7b62-6f45-436a-9986-45ad8265186c" />
 
 **Security Purpose:**
 - Prevents Sydney Administrators from running as service accounts
